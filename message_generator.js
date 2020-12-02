@@ -2,9 +2,9 @@ const randomMessage = [];
 const date = new Date();
 const hour = date.getHours();
 
-const morningMessages = ['Have a great day at work', 'Enjoy the day ahead of you', 'Stay focus during this day', 'In these times you have to be an optimist to open your eyes when you awake in the morning',"Your coffee black and my mornings bright"];
-const afternoonMessages = ['You are as bright as the afternoon sun','The day starts to slow down. Enjoy yourself!','Half of the day is over, enjoy the rest of the day!','There will be a beautiful sunset after you have a good afternoon!'];
-const eveningMessages = ['I hope you had a good and productive day', 'No matter how bad your day has been, the beauty of the setting sun will make everything serene', 'May the setting sun take down all your sufferings with it and make you hopeful for a new day'];
+const morningMessages = [' Have a great day at work.', 'Enjoy the day ahead of you.', ' Stay focus during this day.', ' In these times you have to be an optimist to open your eyes when you awake in the morning.',' Your coffee black and my mornings bright.'];
+const afternoonMessages = [' You are as bright as the afternoon sun',' The day starts to slow down. Enjoy yourself!',' Half of the day is over, enjoy the rest of the day!',' There will be a beautiful sunset after you have a good afternoon!'];
+const eveningMessages = [' I hope you had a good and productive day.', ' No matter how bad your day has been, the beauty of the setting sun will make everything serene.', ' May the setting sun take down all your sufferings with it and make you hopeful for a new day.'];
 
 const poemsForDay = [
     {
@@ -73,14 +73,14 @@ const poemsForDay = [
 ]
 const greeting = (hour) => {
     if(hour < 12 && hour >= 5){
-        randomMessage.push("Good Mornig!");
+        randomMessage.push("Good Mornig");
         messageDisplay(morningMessages);
     }
     else if(hour <= 18 && hour > 12){
-        randomMessage.push('Good Afternoon!');
+        randomMessage.push('Good Afternoon');
         messageDisplay(afternoonMessages);
     }else{
-        randomMessage.push('Good Evening!')
+        randomMessage.push('Good Evening')
         messageDisplay(eveningMessages);
     }
 };
@@ -91,6 +91,14 @@ const messageDisplay = (messages) =>{
     randomMessage.push(selectedMessage);
 };
 
+const finalMessage = (messageArr, randomPoem) => {
+    const poemNum = Math.floor(Math.random()*randomPoem.length);
+    let stringMessage = messageArr.toString();
+    let poem = randomPoem[poemNum].poem
+    return `${stringMessage} Your poem for the days is: 
+    ${poem}`
+
+}
+
 greeting(hour);
-console.log(randomMessage)
-console.log(poemsForDay[0].poem)
+console.log(finalMessage(randomMessage, poemsForDay));
